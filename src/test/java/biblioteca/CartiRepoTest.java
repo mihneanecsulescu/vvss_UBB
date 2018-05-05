@@ -1,7 +1,6 @@
 package biblioteca;
 
 import biblioteca.model.Carte;
-import biblioteca.repository.repoInterfaces.CartiRepoInterface;
 import biblioteca.repository.repoMock.CartiRepoMock;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,5 +52,18 @@ public class CartiRepoTest {
 
         List<Carte> carti = repo.cautaCarte("autor");
         assertEquals(carti.size(), 1);
+    }
+
+    @Test
+    public void getCartiOrdonateDinAnul_anValid() {
+        List<Carte> carti = repo.getCartiOrdonateDinAnul(1973);
+        assertEquals(carti.size(), 2);
+        assertEquals(carti.get(0).getTitlu(), "Poezii");
+    }
+
+    @Test
+    public void getCartiOrdonateDinAnul_anInvalid() {
+        List<Carte> carti = repo.getCartiOrdonateDinAnul(-1);
+        assertEquals(carti.size(), 0);
     }
 }
